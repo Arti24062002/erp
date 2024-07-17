@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none">
+
+<!-- Mirrored from smarthr.dreamstechnologies.com/html/template/projects.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Jun 2024 06:06:53 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords"
+        content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamstechnologies - Bootstrap Admin Template">
+    <title>Projects - HRMS admin template</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/material.css">
+
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+
+    <link rel="stylesheet" href="assets/css/ckeditor.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+
+    <div class="container my-5">
+        <div class="shadow p-5 bg-white rounded">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">First Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Last Name</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Personal Email<span class="text-danger">*</span></label>
+                        <input class="form-control" type="email">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Outlook Email</label>
+                        <input class="form-control" type="email">
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">DOB<span class="text-danger">*</span></label>
+                        <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Joining Date <span class="text-danger">*</span></label>
+                        <div class="cal-icon"><input class="form-control datetimepicker" type="text"></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Phone </label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Gender</label>
+                        <select class="select">
+                            <option value="" selected>Select Gender</option>
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                            <option value="">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Employe Level</label>
+
+                        <select class="select">
+                            <option value="" selected>Select Level</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Company</label>
+                        <select class="select">
+                            <option value>Global Technologies</option>
+                            <option value="1">Delta Infotech</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Department <span class="text-danger">*</span></label>
+                        <div class="col-auto float-end ms-auto">
+                            <a href="#" class="text-secondary" data-bs-toggle="modal"
+                                data-bs-target="#add_department"><i class="fa-solid fa-plus" style="font-size: 12px;"></i> Add Department</a>
+                        </div>
+                        <div id="add_department" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Add Department</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="input-block mb-3">
+                                                <label class="col-form-label">Department Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input class="form-control" type="text">
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <select class="select">
+                            <option>Select Department</option>
+                            <option>Web Development</option>
+                            <option>IT Management</option>
+                            <option>Marketing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Designation <span class="text-danger">*</span></label>
+                        <div class="col-auto float-end ms-auto">
+                            <a href="#" class="text-secondary" data-bs-toggle="modal"
+                                data-bs-target="#add_designation"><i class="fa-solid fa-plus" style="font-size: 12px;"></i> Add Designation</a>
+                        </div>
+                        <div id="add_designation" class="modal custom-modal fade" role="dialog">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Add Designation</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="input-block mb-3">
+                                                <label class="col-form-label">Designation Name <span
+                                                        class="text-danger">*</span></label>
+                                                <input class="form-control" type="text">
+                                            </div>
+                                            <div class="submit-section">
+                                                <button class="btn btn-primary submit-btn">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <select class="select">
+                            <option>Select Designation</option>
+                            <option>Web Designer</option>
+                            <option>Web Developer</option>
+                            <option>Android Developer</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Employee Role</label>
+                        <select class="select">
+                            <option value="" selected>Select Role</option>
+                            <option value="">HR</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Employee Status</label>
+                        <select class="select">
+                            <option value="" selected>Select Status</option>
+                            <option value="">Probation</option>
+                            <option value="">Intern</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Shift</label>
+                        <select class="select">
+                            <option value="" selected>Select Shift</option>
+                            <option value="">Day Shift</option>
+                            <option value="">Intern</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-block mb-3">
+                        <label class="col-form-label">Reporting Manager</label>
+                        <select class="select">
+                            <option value="" selected>Select RM</option>
+                            <option value="">xyz</option>
+                            <option value="">Intern</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="submit-section">
+            <button class="btn btn-primary submit-btn">Submit</button>
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/jquery.slimscroll.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/select2.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/moment.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+    <script src="assets/js/bootstrap-datetimepicker.min.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/layout.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+    <script src="assets/js/theme-settings.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+    <script src="assets/js/greedynav.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+
+    <script src="assets/js/app.js" type="6a781e61f2492fe1cd92e39d-text/javascript"></script>
+    <script src="../../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="6a781e61f2492fe1cd92e39d-|49" defer></script>
+</body>
+
+</html>

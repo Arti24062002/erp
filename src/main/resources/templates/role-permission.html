@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="blue" data-sidebar="light" data-sidebar-size="lg"
+    data-sidebar-image="none">
+
+
+<!-- Mirrored from smarthr.dreamstechnologies.com/html/template/departments.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Jun 2024 06:06:52 GMT -->
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Smarthr - Bootstrap Admin Template">
+  <meta name="keywords"
+    content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+  <meta name="author" content="Dreamstechnologies - Bootstrap Admin Template">
+  <title>Departments - HRMS admin template</title>
+
+  <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/material.css">
+
+  <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .accordion-button:after {
+      content: "";
+      background-color: grey;
+      border-radius: 0px;
+      font-size: 0px;
+      font-family: fontawesome;
+      font-size: 0px;
+      background-image: none !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="main-wrapper">
+
+    <div data-th-replace="~{base-template::component}"></div>
+
+
+    <div class="page-wrapper">
+
+      <div class="content container-fluid">
+
+        <div class="page-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Role</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                <li class="breadcrumb-item active">Employee Role</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-sm-4 col-md-4 col-lg-4 col-xl-3">
+            <a href="#" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#add_role"><i
+                class="fa-solid fa-plus"></i> Add Roles</a>
+            <div class="roles-menu">
+              <ul th:each="role:${allroles}" class="role-list">
+
+                <li class="" th:onclick="'fetchModulesByRole('+${role.id} +',event)'">
+                  <a href="javascript:void(0);">[[${role.role}]]
+                    <span class="role-action">
+                      <span class="action-circle large" th:data-id="${role.id}" th:data-name="${role.role}"
+                        data-bs-toggle="modal" data-bs-target="#edit_role" onclick="openEditRoleModal(this)">
+                        <i class="material-icons">edit</i>
+                      </span>
+                      <span class="action-circle large delete-btn" data-bs-toggle="modal"
+                        th:attr="onclick='confirmRoleDelete(' + ${role.id} + ')'">
+                        <i class="material-icons">delete</i>
+                      </span>
+                    </span>
+                  </a>
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-8 col-md-8 col-lg-8 col-xl-9">
+            <h3 class="card-title m-b-20 text-center">Module Access</h3>
+            <div class="my-3" id="insertCode">
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="add_role" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Role</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form onsubmit="submitRoleFunction(event)">
+              <div class="input-block mb-3">
+                <label class="col-form-label">Role Name <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="roleName" required>
+              </div>
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div id="edit_role" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Role</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="editRoleForm" onsubmit="submitEditRole(event)">
+              <input type="hidden" id="editRoleId" value="">
+              <div class="input-block mb-3">
+                <label class="col-form-label">Role Type <span class="text-danger">*</span></label>
+                <input class="form-control" type="text" id="editRoleName" required>
+              </div>
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+  </div>
+
+
+  <script src="assets/js/jquery-3.7.1.min.js" type="8797293095dbae9620045b86-text/javascript"></script>
+
+  <script src="assets/js/bootstrap.bundle.min.js" type="8797293095dbae9620045b86-text/javascript"></script>
+
+  <script src="assets/js/jquery.slimscroll.min.js" type="8797293095dbae9620045b86-text/javascript"></script>
+
+  <script src="assets/js/jquery.dataTables.min.js" type="8797293095dbae9620045b86-text/javascript"></script>
+  <script src="assets/js/dataTables.bootstrap4.min.js" type="8797293095dbae9620045b86-text/javascript"></script>
+
+  <script src="assets/js/layout.js" type="8797293095dbae9620045b86-text/javascript"></script>
+  <script src="assets/js/theme-settings.js" type="8797293095dbae9620045b86-text/javascript"></script>
+  <script src="assets/js/greedynav.js" type="8797293095dbae9620045b86-text/javascript"></script>
+
+  <script src="assets/js/app.js" type="8797293095dbae9620045b86-text/javascript"></script>
+  <script src="cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+    data-cf-settings="8797293095dbae9620045b86-|49" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="assets/js/add-modules-erp.js">
+
+  </script>
+
+
+</body>
+
+
+</html>

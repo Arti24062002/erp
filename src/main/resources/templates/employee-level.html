@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="blue" data-sidebar="light" data-sidebar-size="lg"
+    data-sidebar-image="none">
+
+<!-- Mirrored from smarthr.dreamstechnologies.com/html/template/designations.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Jun 2024 06:06:52 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords"
+        content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamstechnologies - Bootstrap Admin Template">
+    <title> Add Level</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="/assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/material.css">
+
+    <link rel="stylesheet" href="/assets/css/select2.min.css">
+
+    <link rel="stylesheet" href="/assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <div data-th-replace="~{base-template::component}"></div>
+
+
+
+        <div class="page-wrapper">
+
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Employee Level</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Employee Level</li>
+                            </ul>
+                        </div>
+                        <div class="col-auto float-end ms-auto">
+
+
+                            <div class="col-auto float-end ms-auto">
+                                <div class="d-flex">
+                                    <div class=""><a href="#" class="btn add-btn" data-bs-toggle="modal"
+                                            data-bs-target="#add_level"><i class="fa-solid fa-plus"></i> Add Level</a>
+                                    </div>
+                                    <div class="ms-2"><a href="#" class="btn add-btn" data-bs-toggle="modal"
+                                            data-bs-target="#add_sublevel"><i class="fa-solid fa-plus"></i> Add Sub
+                                            Level</a></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container my-5">
+                    <div class="bg-white rounded mb-5">
+
+                        <div class="row px-3 py-4">
+                            <div class="col-12">
+                                <h4>All Levels</h4>
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped custom-table datatable">
+                                        <thead>
+                                            <tr>
+
+                                                <th>Level</th>
+                                                <th>Level Description</th>
+                                                <th class="text-end no-sort">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="level:${allEmployeeLevel}">
+                                                <td>[[${level.level}]]</td>
+                                                <td>[[${level.levelDescription}]]</td>
+                                                <td class="text-end">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_level"
+                                                                th:attr="onclick='openEditModal(\'' + ${level.id} + '\', \'' + ${level.level} + '\', \'' + ${level.levelDescription} + '\')'"><i
+                                                                    class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#delete_level"  th:attr="onclick='confirmLevelDelete(' + ${level.id} + ')'" ><i
+                                                                    class="fa-regular fa-trash-can m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-12 ">
+                                <h4>All Sub Levels</h4>
+                                <div class="table-responsive mt-3">
+                                    <table class="table table-striped custom-table datatable">
+                                        <thead>
+
+                                            <tr>
+
+                                                <th>Level</th>
+                                                <th>Sub Level</th>
+                                                <th>Sub Level Title</th>
+                                                <th>Sub Level Qualification</th>
+                                                <th>Sub Level Description</th>
+                                                <th class="text-end no-sort">Action</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="subLevel:${allEmployeeSubLevel}">
+                                                <td>[[${subLevel.employeeLevelResponse.level}]]</td>
+                                                <td>[[${subLevel.subLevel}]]</td>
+                                                <td>[[${subLevel.subLevelTitle}]]</td>
+                                                <td>[[${subLevel.subLevelQualification}]]</td>
+                                                <td th:text="${subLevel.subLevelDescription}"></td>
+                                                <td class="text-end">
+                                                    <div class="dropdown dropdown-action">
+                                                        <a href="#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                                class="material-icons">more_vert</i></a>
+                                                        <div class="dropdown-menu dropdown-menu-right">
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                                data-bs-target="#edit_sublevel"
+                                                                th:attr="onclick='openEditSubLevelModal(\'' + ${subLevel.employeeLevelResponse.id} + '\', \'' + ${subLevel.id} + '\', \'' + ${subLevel.subLevel} + '\', \'' + ${subLevel.subLevelTitle} + '\', \'' + ${subLevel.subLevelDescription} + '\', \'' + ${subLevel.subLevelQualification} + '\')'"><i
+                                                                    class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                                                            th:attr="onclick='confirmSubLevelDelete(' + ${subLevel.id} + ')'"
+                                                                data-bs-target="#delete_sublevel" ><i
+                                                                    class="fa-regular fa-trash-can m-r-5"></i>
+                                                                Delete</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="add_level" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Level</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addLevelForm" onsubmit="submitAddLevel(event)">
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Level Name<span class="text-danger">*</span></label>
+                                    <input id="levelName" class="form-control" type="text">
+                                </div>
+
+                                <div class="input-block">
+                                    <label class="col-form-label">Level Description<span
+                                            class="text-danger">*</span></label>
+                                    <textarea id="levelDescription" class="form-control"></textarea>
+                                </div>
+
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="add_sublevel" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Sub Level</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="sublevelForm" onsubmit="submitAddSubLevel(event)">
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Select Level<span class="text-danger">*</span></label>
+                                    <select class="select" id="employeeLevelId" required>
+                                        <option selected>Select Level</option>
+                                        <option th:each="allLevel : ${allEmployeeLevel}" th:value="${allLevel.id}">
+                                            [[${allLevel.level}]]</option>
+                                    </select>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="subLevel">
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Title<span
+                                            class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" id="subLevelTitle">
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Qualification<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="subLevelQualification">
+                                </div>
+
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Description<span
+                                            class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="subLevelDescription"></textarea>                              
+                                </div>
+            
+
+
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="edit_sublevel" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Sub Level</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editSubLevelForm">
+                                <div class="input-block mb-3">
+                                    <input  type="hidden" id="editSubLevelId"/>
+                                    <label class="col-form-label">Select Level<span class="text-danger">*</span></label>
+                                    <select id="editSubLevelSelect" class="select">
+                                        <option th:each="allLevel : ${allEmployeeLevel}" th:value="${allLevel.id}">
+                                            [[${allLevel.level}]]</option>
+                                    </select>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level<span class="text-danger">*</span></label>
+                                    <input id="editSubLevelName" class="form-control" type="text">
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Title<span
+                                            class="text-danger">*</span></label>
+                                    <input id="editSubLevelTitle" class="form-control" type="text">
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Qualification<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="editSubLevelQualification"/>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Sub Level Description<span
+                                            class="text-danger">*</span></label>
+                                    <textarea id="editSubLevelDescription" class="form-control"></textarea>
+                                </div>
+                                
+
+
+                                <div class="submit-section">
+                                    <button type="button" class="btn btn-primary submit-btn"
+                                        onclick="submitEditSubLevel()">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+          
+            <div id="edit_level" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Level</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editLevelForm">
+                                <input type="hidden" id="editLevelId" />
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Level Name<span class="text-danger">*</span></label>
+                                    <input id="editLevelName" class="form-control" type="text" required>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Level Description<span
+                                            class="text-danger">*</span></label>
+                                    <textarea id="editLevelDescription" class="form-control" required></textarea>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="button" class="btn btn-primary submit-btn"
+                                        onclick="submitEditLevel()">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="/assets/js/jquery-3.7.1.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/bootstrap.bundle.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/jquery.slimscroll.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/select2.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/jquery.dataTables.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="/assets/js/dataTables.bootstrap4.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/layout.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="/assets/js/theme-settings.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="/assets/js/greedynav.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="/assets/js/app.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="1186a3aff0d0141aff630271-|49" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/assets/js/add-modules-erp.js"></script>
+    <script>
+      
+    </script>
+</body>
+
+
+</html>

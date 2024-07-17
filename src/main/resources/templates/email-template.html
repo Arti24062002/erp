@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reminder: Period Ending Soon</title>
+    <style>
+        /* Define your email styles here */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        p {
+            margin-bottom: 16px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 20px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <p>Dear Admin,</p>
+        <p>This is a reminder that the <strong th:text="${periodType}">periodType</strong> period for employee <strong th:text="${firstName} + ' ' + ${lastName}">firstName lastName</strong> (ID: <strong th:text="${userId}">userId</strong>) is ending in 7 days. Please take the necessary actions.</p>
+        <p>Employee Information:</p>
+        <ul>
+            <li><strong>First Name:</strong> <span th:text="${firstName}">FirstName</span></li>
+            <li><strong>Last Name:</strong> <span th:text="${lastName}">LastName</span></li>
+            <li><strong>Email:</strong> <span th:text="${email}">Email</span></li>
+            <li><strong>Personal Email:</strong> <span th:text="${personalEmail}">PersonalEmail</span></li>
+            <li><strong>Phone:</strong> <span th:text="${phone}">Phone</span></li>
+            <li><strong>Role:</strong> <span th:text="${role}">Role</span></li>
+            <li><strong>Date of Joining:</strong> <span th:text="${doj}">DateOfJoining</span></li>
+            <li><strong>Designation:</strong> <span th:text="${designation}">Designation</span></li>
+            <li><strong>Employee Level:</strong> <span th:text="${employeeLevel}">EmployeeLevel</span></li>
+            <li><strong>Gender:</strong> <span th:text="${gender}">Gender</span></li>
+            <li><strong>Department:</strong> <span th:text="${department}">Department</span></li>
+            <li><strong>Shift:</strong> <span th:text="${shift}">Shift</span></li>
+            <li><strong>Current Status:</strong> <span th:text="${currentStatus}">CurrentStatus</span></li>
+            <li><strong>Company:</strong> <span th:text="${company}">Company</span></li>
+            <li><strong>Status:</strong> <span th:text="${status}">Status</span></li>
+            <li><strong>Manager:</strong> <span th:text="${rm}">Manager</span></li>
+            <li><strong>Second Manager:</strong> <span th:text="${secondRm}">SecondManager</span></li>
+        </ul>
+        <p>Best regards,<br/>Your ERP System</p>
+    </div>
+    <div class="footer">
+        <p>This email is system-generated. Please do not reply.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="blue" data-sidebar="light" data-sidebar-size="lg"
+    data-sidebar-image="none">
+
+<!-- Mirrored from smarthr.dreamstechnologies.com/html/template/designations.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Jun 2024 06:06:52 GMT -->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smarthr - Bootstrap Admin Template">
+    <meta name="keywords"
+        content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
+    <meta name="author" content="Dreamstechnologies - Bootstrap Admin Template">
+    <title>Employee Status</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="assets/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/material.css">
+
+    <link rel="stylesheet" href="assets/css/select2.min.css">
+
+    <link rel="stylesheet" href="assets/css/dataTables.bootstrap4.min.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <div class="main-wrapper">
+
+        <div data-th-replace="~{base-template::component}"></div>
+
+
+        <div class="page-wrapper">
+
+            <div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h3 class="page-title">Employee Status</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Employee Status</li>
+                            </ul>
+                        </div>
+                        <div class="col-auto float-end ms-auto">
+                            <a href="#" class="btn add-btn" data-bs-toggle="modal"
+                                data-bs-target="#add_employee_status"><i class="fa-solid fa-plus"></i> Add Status</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped custom-table mb-0 datatable">
+                                <thead>
+                                    <tr>
+                                        <th class="width-thirty">#</th>
+                                        <th>Probation</th>
+                                        <th>Confirmed Employee Status</th>
+                                        <th>Description</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="status:${allEmployeeStatus}">
+                                        <td>[[${status.id}]]</td>
+                                        <td>[[${status.probationTimeInDays}]]</td>
+                                        <td>[[${status.employeeStatus}]]</td>
+                                        <td>[[${status.description}]]</td>
+                                        <td class="text-end">
+                                            <div class="dropdown dropdown-action">
+                                                <a href="#" class="action-icon dropdown-toggle"
+                                                    data-bs-toggle="dropdown" aria-expanded="false"><i
+                                                        class="material-icons">more_vert</i></a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#" 
+                                                        th:data-id="${status.id}"
+                                                        th:data-probation="${status.probationTimeInDays}"
+                                                        th:data-status="${status.employeeStatus}"
+                                                        th:data-des="${status.description}"
+                                                       
+                                                        onclick="openEditEmployeeStatusModel(this)">
+                                                        
+                                                        <i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+                                                    <a class="dropdown-item" href="#" th:onclick="'confirmEmployeeStatusDelete('+${status.id}+')'"><i
+                                                            class="fa-regular fa-trash-can m-r-5"></i> Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="add_employee_status" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add Employee Status</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addEmployeeStatusForm" onsubmit="addEmployeeStatusForm(event)">
+                                <div class="input-block">
+                                    <label class="col-form-label">Probation Time in Days<span
+                                            class="text-danger">*</span></label>
+                                    <input id="probationTimeInDays" name="probationTimeInDays" class="form-control"
+                                        type="number" required>
+                                </div>
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Employee Status<span
+                                            class="text-danger">*</span></label>
+                                    <select id="employeeStatus" name="employeeStatus" class="select" required>
+                                        <option value="" selected disabled>Select Status</option>
+                                        <option value="Probation">Probation</option>
+                                        <option value="Confirmed">Confirmed</option>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Trainee">Trainee</option>
+                                    </select>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Description<span class="text-danger">*</span></label>
+                                    <textarea id="description" name="description" class="form-control"
+                                        required></textarea>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="edit_employee_status" class="modal custom-modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Edit Status</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editStatusForm" onsubmit="submitStatusFrom(event)">
+                                <div class="input-block">
+
+                                    <input type="hidden" id="editStatusId">
+                                    <label class="col-form-label">Probation Period<span
+                                            class="text-danger">*</span></label>
+                                    <input id="editProbationTime" class="form-control" type="text" required>
+                                </div>
+                                <div class="input-block mb-3">
+                                    <label class="col-form-label">Confirmed Employee Status<span
+                                            class="text-danger">*</span></label>
+                                    <select id="editEmployeeStatus" class="select" required>
+                                  
+                                        <option value="Probation">Probation</option>
+                                        <option value="Confirmed">Confirmed</option>
+                                        <option value="Contract">Contract</option>
+                                        <option value="Trainee">Trainee</option>
+                                    </select>
+                                </div>
+                                <div class="input-block">
+                                    <label class="col-form-label">Description <span class="text-danger">*</span></label>
+                                    <textarea id="editDescription" class="form-control" required></textarea>
+                                </div>
+                                <div class="submit-section">
+                                    <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script src="assets/js/jquery-3.7.1.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/bootstrap.bundle.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/jquery.slimscroll.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/select2.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/jquery.dataTables.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="assets/js/dataTables.bootstrap4.min.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/layout.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="assets/js/theme-settings.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="assets/js/greedynav.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+
+    <script src="assets/js/app.js" type="1186a3aff0d0141aff630271-text/javascript"></script>
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js"
+        data-cf-settings="1186a3aff0d0141aff630271-|49" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/assets/js/add-modules-erp.js"></script>
+    <script>
+  
+    </script>
+
+
+</body>
+
+
+</html>

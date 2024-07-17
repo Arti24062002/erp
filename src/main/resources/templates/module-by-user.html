@@ -1,0 +1,39 @@
+<div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item" th:each="module : ${allmodules}">
+        <h2 class="accordion-header" th:attr="id='panelsStayOpen-heading' + ${module.id}">
+            <div class="d-flex">
+                <button class="accordion-button" type="button"
+                    th:attr="data-bs-toggle='collapse', data-bs-target='#panelsStayOpen-collapse' + ${module.id}, aria-expanded='true', aria-controls='panelsStayOpen-collapse' + ${module.id}">
+                    [[${module.moduleName}]]
+                    <div class="status-toggle ms-auto">
+                        <input type="checkbox" th:attr="id='staff_module' + ${module.id}"
+                            class="check"
+                            th:onclick="'toggleSubmoduleCheckboxes(this, \'panelsStayOpen-collapse' + ${module.id} + '\')'">
+                        <label th:attr="for='staff_module' + ${module.id}"
+                            class="checktoggle">checkbox</label>
+                    </div>
+                </button>
+            </div>
+        </h2>
+        <div th:attr="id='panelsStayOpen-collapse' + ${module.id}, aria-labelledby='panelsStayOpen-heading' + ${module.id}"
+            class="accordion-collapse collapse "
+            >
+            <div class="accordion-body pb-5">
+                <span class="mx-2" th:each="submodule : ${allsubmodules}"
+                    th:if="${submodule.module.id} == ${module.id}">
+                    <input type="checkbox" th:id="${submodule.id}" th:name="submodules"
+                        th:value="${submodule.permission.id}"
+                        th:checked="${#lists.contains(employee.permissions, submodule.permission)}">
+                    <label th:for="${submodule.id}">[[${submodule.name}]]</label>
+
+                </span>
+
+                <div class="">
+                    <button class="float-end btn btn-primary " th:onclick="'saveEmployeePermission(\'panelsStayOpen-collapse' + ${module.id} + '\','+ ${employee.id}+')'" >Save</button>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
